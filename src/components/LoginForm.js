@@ -1,21 +1,21 @@
 import React from "react";
 import "./Login.scss";
 
-function Login(props) {
+function LoginForm({ onLogin, isLoggedIn }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  function handleEmailChange(e) {
+  const handleEmailChange = (e) => {
     setEmail(e.target.value);
-  }
-  function handlePasswordChange(e) {
+  };
+  const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    props.onLogin(password, email);
-  }
+    onLogin(password, email);
+  };
 
   return (
     <main className="account">
@@ -49,4 +49,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default LoginForm;

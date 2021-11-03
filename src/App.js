@@ -1,16 +1,16 @@
-import Login from "./components/Login";
+import LoginForm from "./components/LoginForm";
 import "./App.css";
 import { authorize } from "./utils/Auth";
 import React from "react";
 
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
-  const memoizedHandleAuthorize = React.useCallback(async (password, email) => {
+  const handleAuth = React.useCallback(async (password, email) => {
     try {
-      let res = await authorize(password, email);
+      const res = await authorize(password, email);
       alert(res);
-      setLoggedIn(true);
+      setIsLoggedIn(true);
     } catch (err) {
       alert(err);
     }
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className="page">
-      <Login onLogin={memoizedHandleAuthorize} loggedIn={loggedIn} />;
+      <LoginForm onLogin={handleAuth} isLoggedIn={isLoggedIn} />;
     </div>
   );
 }
