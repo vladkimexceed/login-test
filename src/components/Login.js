@@ -23,7 +23,7 @@ function Login(props) {
         <h2 className="form__header">Вход</h2>
         <input
           className="form__field"
-          type="text"
+          type="email"
           name="email"
           value={email}
           onChange={handleEmailChange}

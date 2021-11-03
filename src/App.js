@@ -6,7 +6,7 @@ import React from "react";
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
 
-  async function handleAuthorize(password, email) {
+  const memoizedHandleAuthorize = React.useCallback(async (password, email) => {
     try {
       let res = await authorize(password, email);
       alert(res);
@@ -14,10 +14,11 @@ function App() {
     } catch (err) {
       alert(err);
     }
-  }
+  }, []);
+
   return (
     <div className="page">
-      <Login onLogin={handleAuthorize} loggedIn={loggedIn} />;
+      <Login onLogin={memoizedHandleAuthorize} loggedIn={loggedIn} />;
     </div>
   );
 }
