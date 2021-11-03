@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./components/Login";
+import "./App.css";
+import { authorize } from "./utils/Auth";
+import React from "react";
 
 function App() {
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
+  async function handleAuthorize(password, email) {
+    try {
+      let res = await authorize(password, email);
+      alert(res);
+      setLoggedIn(true);
+    } catch (err) {
+      alert(err);
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="page">
+      <Login onLogin={handleAuthorize} loggedIn={loggedIn} />;
     </div>
   );
 }
